@@ -11,20 +11,20 @@ services:
       - "5433:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
-    # networks:
-    #   - my_network
-  # backend:
-  #   build: ./backend
-  #   container_name: backend
-  #   environment:
-  #     ASPNETCORE_ENVIRONMENT: Development
-  #     ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Database=${POSTGRES_DB}"
-  #   ports:
-  #     - "8080:8080"
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - my_network
+    networks:
+      - my_network
+  backend:
+    build: ./backend
+    container_name: backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Database=${POSTGRES_DB}"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - my_network
   # frontend:
   #   build: ./frontend
   #   container_name: frontend
@@ -40,6 +40,6 @@ services:
 volumes:
   pg_data:
 
-# networks:
-#   my_network:
-#     driver: bridge
+networks:
+  my_network:
+    driver: bridge
