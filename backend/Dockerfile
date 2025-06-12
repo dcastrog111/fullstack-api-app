@@ -14,6 +14,8 @@ RUN dotnet publish -c Release -o out
 # Etapa Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 
+
+
 # Directorio de trabajo
 WORKDIR /app
 

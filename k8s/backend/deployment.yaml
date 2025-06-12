@@ -17,10 +17,10 @@ spec:
       - name: backend
         image: dcastrog111/fullstack-api-app-backend:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
         env:
-          - name: NODE_ENV
-            value: "production"
+          - name: ASPNETCORE_ENVIRONMENT
+            value: "Development"
           - name: PG_HOST
             value: "postgres"
           - name: PG_DATABASE
@@ -38,3 +38,5 @@ spec:
               secretKeyRef:
                 name: db-secrets
                 key: PG_PASSWORD
+          - name: ConnectionStrings__DefaultConnection
+            value: "Host=postgres;Port=5432;Username=admin;Password=secret;Database=backdb"
